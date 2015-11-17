@@ -11,6 +11,17 @@
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 
+	<filter>
+		<filter-name>cors</filter-name>
+		<filter-class>com.roomreservation.web.controller.Filters.CORSFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>cors</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>

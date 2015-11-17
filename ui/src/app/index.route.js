@@ -14,11 +14,16 @@
         controller: 'homeController',
         controllerAs: 'home'
       })
-      .state('home2', {
-        url: '/home2',
-        templateUrl: 'app/pages/main/home2.html',
-        controller: 'Home2Controller',
-        controllerAs: 'home2'
+      .state('rooms', {
+        url: '/rooms',
+        templateUrl: 'app/pages/rooms/rooms.html',
+        controller: 'roomsController',
+        controllerAs: 'rooms'
+      }).state('users', {
+        url: '/users',
+        templateUrl: 'app/pages/users/users.html',
+        controller: 'usersController',
+        controllerAs: 'users'
       });
 
     $urlRouterProvider.otherwise('/');

@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="main-window">
+    <h1> System zarzadzania pokojami </h1>
+
+    <div class="menu-container">
+      <a ui-sref="rooms">Pokoje</a>
+      <a ui-sref="users">Użytkownicy</a>
+    </div>
+
+
+    <div class="users-list-wrap-container">
+      <div class="users-list-container">
+        <h2>Użytkownicy</h2>
+        <select size="15"
+                ng-model="users.selectedUser"
+                ng-options="user as (user.name + ' '+ user.surname) for user in users.users">
+          <option>{{room}}</option>
+        </select>
+        <button ng-click="users.openAddUserModal()">Dodaj</button>
+        <button ng-click="users.deleteUser(users.selectedUser.id)">Usun</button>
+      </div>
+    </div>
+
+
+    <div class="users-description-container container">
+      <h2>Opis</h2>
+      <div class="form-group">
+        <label for="name">Imie:</label>
+        <label class="unBold" id="name">{{users.selectedUser.name}}</label>
+      </div>
+      <div class="form-group">
+        <label for="surname">Nazwisko:</label>
+        <label class="unBold" id="surname">{{users.selectedUser.surname}}</label>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+

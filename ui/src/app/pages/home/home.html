@@ -1,21 +1,19 @@
-
-
 <div class="container">
 
-  <div class="main-window" ng-controller="homeController">
+  <div class="main-window">
     <h1> System zarzadzania pokojami </h1>
-    <a ui-sref="home2">Show List</a>
 
-    <!--<button ngClick=""> add room</button>-->
+    <div class="menu-container">
+      <a ui-sref="rooms">Pokoje</a>
+      <a ui-sref="users">Użytkownicy</a>
+    </div>
 
-    <button ngClick="deleteRoom()"> delete room</button>
 
-    <select
-      ng-model="selectedRoom"
-      ng-options="room as room.name for room in rooms">
-      <option>{{room.name}}</option>
-    </select>
+Logowanie:
 
+    Login
+
+    Haslo
 
   </div>
 
