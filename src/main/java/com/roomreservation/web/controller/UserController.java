@@ -31,6 +31,12 @@ public class UserController {
 		userService.delete(id);
 	}
 
+	@RequestMapping(value="/{string}", method = RequestMethod.GET)
+	public List<User> findUserByString(@RequestParam String string) {
+		String[] words = string.split(" ");
+		return userService.findLike(words);
+	}
+
 
 
 

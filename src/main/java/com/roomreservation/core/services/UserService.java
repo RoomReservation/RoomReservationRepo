@@ -29,4 +29,6 @@ public class UserService {
         userDAOImpl.delete(id);
     }
 
+    public List<User> findLike(String[] words){return userDAOImpl.findLike(words);}
+
 }

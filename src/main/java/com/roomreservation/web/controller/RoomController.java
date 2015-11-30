@@ -1,9 +1,11 @@
 package com.roomreservation.web.controller;
 
+import com.roomreservation.core.dao.ReservationDAO;
 import com.roomreservation.core.entity.Reservation;
 import com.roomreservation.core.entity.Room;
 import com.roomreservation.core.services.ReservationsService;
 import com.roomreservation.core.services.RoomService;
+import com.roomreservation.web.dto.ReservationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,13 +39,13 @@ public class RoomController {
 
     @RequestMapping(value="/{id}/reservations", method = RequestMethod.GET)
     public List<Reservation> getReservations(@PathVariable("id") long id) {
-        List<Reservation> reservationList = reservationsService.getAll();
+        List<Reservation> reservationList = reservationsService.findByRoom(id);
         return reservationList;
     }
 
-    @RequestMapping(value="/{id}/reservations", method = RequestMethod.POST)
-    public void saveReservation(@RequestBody Reservation reservation) {
-        reservationsService.save(reservation);
+    @RequestMapping(value="/{id}/reservations}", method = RequestMethod.POST)
+    public void saveReservation(@RequestBody ReservationDTO reservationDTO) {
+        reservationsService.save(reservationDTO);
     }
 
     @RequestMapping(value="/{id}/reservations/{id}", method = RequestMethod.DELETE)

@@ -14,8 +14,9 @@
 
     function addUser(form){
       if(form.$valid) {
-        usersFactory.addUser(vmModal.user);
-        activate();
+        usersFactory.addUser(vmModal.user).then(function(){
+          activate();
+        });
         $uibModalInstance.close();
       }
     }

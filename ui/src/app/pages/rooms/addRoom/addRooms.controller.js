@@ -15,8 +15,10 @@
 
     function addRoom(form){
       if(form.$valid) {
-        roomsFactory.addRoom(vmModal.room);
-        activate();
+        roomsFactory.addRoom(vmModal.room).then(function(){
+
+          activate();
+        });
         $uibModalInstance.close();
       }
     }

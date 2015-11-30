@@ -13,7 +13,8 @@
     return {
       getAllUsers: getAllUsers,
       deleteUser: deleteUser,
-      addUser: addUser
+      addUser: addUser,
+      getByString: getByString
     };
 
     function deleteUser(id) {
@@ -21,7 +22,7 @@
         method: 'DELETE',
         url: baseUrl + '/users/:id',
         params: {id: id}
-      })
+      });
     }
 
     function getAllUsers() {
@@ -39,6 +40,13 @@
       });
     }
 
+    function getByString(string){
+      return $http({
+        method: 'GET',
+        url: baseUrl+'/users/:string',
+        params: {string: string}
+      });
+    }
 
 
 

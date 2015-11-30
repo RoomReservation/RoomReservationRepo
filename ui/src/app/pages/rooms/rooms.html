@@ -16,11 +16,16 @@
         <h2>Pokoje</h2>
         <select size="15"
                 ng-model="rooms.selectedRoom"
-                ng-options="room as room.name for room in rooms.rooms">
+                ng-options="room as room.name for room in rooms.rooms"
+                ng-change="rooms.onChangeRoom()">
           <option>{{room}}</option>
         </select>
-        <button ng-click="rooms.openAddRoomModal()" > add room</button>
-        <button ng-click="rooms.deleteRoom(rooms.selectedRoom.id)"> delete room</button>
+        <button class="btn btn-primary" ng-click="rooms.openAddRoomModal()"> Dodaj</button>
+        <button class="btn btn-danger btn-xs" ng-click="rooms.deleteRoom(rooms.selectedRoom.id)"> Usuń</button>
+
+
+        <button  style="margin-top: 10px"  class="btn btn-primary" ng-click="rooms.openAddReservationModal()"> Zarezerwój</button>
+
       </div>
         </pre>
 
@@ -40,10 +45,13 @@
        </div>
     </div>
 
-    <div class="row">
+    <div class="separator-container"></div>
+
+
+    <div class="row calendar-width">
       <div class="col-md-6">
         <p class="input-group">
-          <input type="date" class="form-control" uib-datepicker-popup="{{rooms.format}}" ng-model="rooms.dateFrom" is-open="rooms.status.openDateFrom" min-date="rooms.minDate" max-date="rooms.maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <input type="date" class="form-control" ng-change="rooms.onChangeChartDateFrom()" uib-datepicker-popup="{{rooms.format}}" ng-model="rooms.dateFrom" is-open="rooms.status.openDateFrom" min-date="rooms.minDate" max-date="rooms.maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="rooms.openDateFrom($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -51,10 +59,10 @@
       </div>
   </div>
 
-    <div class="row">
+    <div class="row calendar-width">
       <div class="col-md-6">
         <p class="input-group">
-          <input type="date" class="form-control" uib-datepicker-popup="{{rooms.format}}" ng-model="rooms.dateTo" is-open="rooms.status.openDateTo" min-date="rooms.dateFrom.addDays(1)" max-date="rooms.maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <input type="date" class="form-control" ng-change="rooms.onChangeChartDateTo()" uib-datepicker-popup="{{rooms.format}}" ng-model="rooms.dateTo" is-open="rooms.status.openDateTo" min-date="rooms.dateFrom.addDays(1)" max-date="rooms.maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="rooms.openDateTo($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -62,9 +70,9 @@
       </div>
   </div>
 
+<div class="clear" id="visualization"></div>
+
 
 </div>
-
-
 
 </div>
