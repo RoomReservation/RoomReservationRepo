@@ -1,0 +1,1 @@
+npm install -g node-gyp --msvs_version=2013

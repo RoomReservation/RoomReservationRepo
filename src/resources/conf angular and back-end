@@ -1,0 +1,44 @@
+Konfiguracja AngularJS  z JAVA EE i Spring w Single  Page Applications
+
+Do wygenerowania struktury projektu wraz z konfiguracją po stronie UI skorzystamy z gulp-generator który znjaduje się na serwisie github użytkownika swiip w repozytorium „generator-gulp-angular”
+Aby tego dokonać należy zainstalować  zainstalować środowisko programistyczne Node.js
+Node.js – środowisko programistyczne zaprojektowane do tworzenia wysoce skalowalnych aplikacji internetowych, szczególnie serwerów www napisanych w języku JavaScript. Umożliwia tworzenie aplikacji sterowanych zdarzeniami wykorzystujących asynchroniczny system wejścia-wyjścia. Jest aplikacją open source.
+Nastepnie należy zainstalować wymagane narzędzia yo, gulp, bower wykorzystując menadzer zależnosći dla node.js którym jest npm
+poleceniem:
+npm install -g yo gulp bower
+Gulp – jest to system automatyzacji
+Bower - menadzer paczek klienckich
+
+zainstalwoać generator-gulp-angular
+poleceniem:
+npm install -g generator-gulp-angular
+utworzyc  nowy katalog i wejść  do niego
+mkdir mój_nowy_projekt
+cd mój_nowy_projekt
+uruchomić yo gulp-angular
+yo gulp-angular
+
+Następnie po wygenerowaniu  projektu otrzymujemy następującą strukturte plików:
+
+
+
+Którą umieszczamy w folderze głownym projektu java w katalogu „ui”.
+
+Następnie w  projekcie JAVA należy dodać  zależności springa dla projektu webowego
+O nastepujacym id artefaktu:
+spring-core
+spring-web
+spring-webmvc
+
+Następnie w pliku konfiguracyjnym springa mvc-dispatcher-servlet.xml należy dodać następujące tagi:
+<mvc:view-controller path="/" view-name="index.html"/>
+mvc:view-controller tag widok-kontroller rejestruje ParametrizableViewController  który wybiera widok do renderowania. Kiedy  wykonywane jest żadanie na  ‘’/’’ strona index.html jest renderowana
+<mvc:resources location="/ui/" mapping="/**"/>
+ mvc:resources tag zasobów umożliwia skonfigurowanie obsługi zasobów statycznych, takich jak pliki css i javascript.
+
+
+
+
+
+
+

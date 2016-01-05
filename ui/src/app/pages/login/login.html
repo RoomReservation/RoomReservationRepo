@@ -1,0 +1,28 @@
+
+    <div class="loginmodal-container" >
+      <h1>Logowanie do systemu</h1><br>
+
+      <form id="loginForm" novalidate>
+        <input type="text" name="username" placeholder="Użytkownik" data-ng-model="login.userLogin.login" required>
+
+        <div ng-show="loginForm.$submitted || loginForm.name.$touched">
+        <span class="error"
+              ng-show="loginForm.name.$error.required">Za krotka nazwa</span>
+        </div>
+
+        <input type="password" name="password" placeholder="Hasło" data-ng-model="login.userLogin.password">
+
+        <div ng-show="loginForm.$submitted || loginForm.password.$touched">
+        <span class="error"
+              ng-show="loginForm.password.$error.required">Za krotka nazwa</span>
+        </div>
+
+
+        <input type="submit" name="submit" class="login loginmodal-submit" ng-click="login.login(loginForm)" value="Login">
+      </form>
+
+      <!--<div class="login-help">-->
+        <!--<a href="#">Register</a> - <a href="#">Forgot Password</a>-->
+      <!--</div>-->
+
+</div>

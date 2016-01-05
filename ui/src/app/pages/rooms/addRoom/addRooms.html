@@ -1,0 +1,42 @@
+<form name="addRoom" novalidate>
+  <div class="modal-header">
+    <h3 class="modal-title">Dodawanie pokoju</h3>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label for="name">Nazwa pokoju:</label>
+      <input ng-minlength="4" id="name" class="form-control" name="name" ng-model="add.room.name" required>
+
+      <div ng-show="addRoom.$submitted || addRoom.name.$touched">
+        <span class="error"
+              ng-show="addRoom.name.$error.minlength || addRoom.name.$error.required">Za krotka nazwa</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Opis pokoju:</label>
+      <textarea id="description" class="form-control" name="description" ng-model="add.room.description" style="resize: none;"
+                required></textarea>
+
+      <div ng-show="addRoom.$submitted || addRoom.name.$touched">
+        <span class="error" ng-show="addRoom.description.$error.required">Uzupelnij pole</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Cena pokoju:</label>
+      <input type="number" id="price" class="form-control" name="price" ng-model="add.room.price" required>
+
+      <div ng-show="addRoom.$submitted || addRoom.name.$touched">
+        <span class="error" ng-show="addRoom.price.$error.required">Uzupelnij pole</span>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="add.addRoom(addRoom)">Dodaj</button>
+    <a class="btn btn-default" ng-click="add.close()">Zamknij</a>
+  </div>
+
+</form>

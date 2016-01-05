@@ -1,0 +1,32 @@
+<form name="addUser" novalidate>
+  <div class="modal-header">
+    <h3 class="modal-title">Dodawanie użytkowników</h3>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label for="name">Imie:</label>
+      <input ng-minlength="4" id="name" class="form-control" name="name" ng-model="add.customer.name" required>
+
+      <div ng-show="addUser.$submitted || addUser.name.$touched">
+        <span class="error"
+              ng-show="addUser.name.$error.minlength || addUser.name.$error.required">Za krotka nazwa</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="surname">Nazwisko:</label>
+      <textarea id="surname" class="form-control" name="surname" ng-model="add.customer.surname" style="resize: none;"
+                required></textarea>
+
+      <div ng-show="addUser.$submitted || addUser.name.$touched">
+        <span class="error" ng-show="addUser.description.$error.required">Uzupelnij pole</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="add.addCustomer(addUser)">Dodaj</button>
+    <a class="btn btn-default" ng-click="add.close()">Zamknij</a>
+  </div>
+
+</form>

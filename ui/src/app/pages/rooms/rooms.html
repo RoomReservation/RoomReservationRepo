@@ -1,0 +1,92 @@
+<div class="container">
+
+  <div class="main-window">
+    <h1> System zarzadzania pokojami </h1>
+
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Opcje</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
+            <li class="active"> <a ui-sref="rooms">Pokoje</a></li>
+            <li><a ui-sref="customers">Użytkownicy</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a ng-click='rooms.logout()'><span class="glyphicon glyphicon-log-out"></span>Wylogoj</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="rooms-list-wrap-container"></div>
+
+<div class="rooms-description-div-container">
+      <pre class="rooms-list-pre-container">
+      <div class="rooms-list-container">
+        <h2>Pokoje</h2>
+        <select size="15"
+                ng-model="rooms.selectedRoom"
+                ng-options="room as room.name for room in rooms.rooms"
+                ng-change="rooms.onChangeRoom()">
+          <option>{{room}}</option>
+        </select>
+        <button class="btn btn-primary" ng-click="rooms.openAddRoomModal()"> Dodaj</button>
+        <button class="btn btn-danger btn-xs" ng-click="rooms.deleteRoom(rooms.selectedRoom.id)"> Usuń</button>
+
+
+        <button  style="margin-top: 10px"  class="btn btn-primary" ng-click="rooms.openAddReservationModal()"> Zarezerwój</button>
+
+      </div>
+        </pre>
+
+    <div class="rooms-description-container container">
+      <h2>Opis</h2>
+      <div class="form-group">
+        <label for="name">Nazwa:</label>
+        <label class="unBold" id="name">{{rooms.selectedRoom.name}}</label>
+       </div>
+      <div class="form-group">
+        <label for="description">Opis:</label>
+        <label class="unBold" id="description">{{rooms.selectedRoom.description}}</label>
+       </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <label class="unBold" id="price">{{rooms.selectedRoom.price}}</label>
+       </div>
+    </div>
+</div>
+    <div class="separator-container"></div>
+
+
+    <div class="row calendar-width">
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="date" class="form-control" ng-change="rooms.onChangeChartDateFrom()" uib-datepicker-popup="{{rooms.format}}" ng-model="rooms.dateFrom" is-open="rooms.status.openDateFrom" min-date="rooms.minDate" max-date="rooms.maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="rooms.openDateFrom($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+      </div>
+  </div>
+
+    <div class="row calendar-width">
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="date" class="form-control" ng-change="rooms.onChangeChartDateTo()" uib-datepicker-popup="{{rooms.format}}" ng-model="rooms.dateTo" is-open="rooms.status.openDateTo" min-date="rooms.dateFrom.addDays(1)" max-date="rooms.maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="rooms.openDateTo($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+      </div>
+  </div>
+
+<div class="clear" id="visualization"></div>
+
+
+</div>
+
+</div>

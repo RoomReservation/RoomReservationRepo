@@ -1,0 +1,87 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <beans:bean id="customLogoutSuccessHandler" class="com.roomreservation.web.security.CustomLogoutSuccessHandler"></beans:bean>
+
+    <http entry-point-ref="unauthorizedEntryPoint" authentication-manager-ref="authenticationManager">
+        <custom-filter ref="corsFilter" after="PRE_AUTH_FILTER"/>
+        <custom-filter ref="customUsernamePasswordAuthenticationFilter" before="FORM_LOGIN_FILTER"/>
+        <intercept-url pattern="/resources/**" access="authenticated"/>
+        <logout logout-url="/resources/logout" invalidate-session="true"  success-handler-ref="customLogoutSuccessHandler" />
+        <form-login  authentication-failure-url="/Access_Denied"/>
+        <csrf disabled="true"/>
+    </http>
+
+    <beans:bean id="corsFilter" class="com.roomreservation.web.Filters.CORSFilter" />
+    <beans:bean id="authFailureHandler" class="com.roomreservation.web.security.AuthFailureHandler" />
+    <beans:bean id="authSuccessHandler" class="com.roomreservation.web.security.AuthSuccessHandler" />
+
+    <authentication-manager id="authenticationManager">
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+
+    <beans:bean id="unauthorizedEntryPoint" class="com.roomreservation.web.security.UnauthorizedEntryPoint"/>
+
+
+    <beans:bean id="customUsernamePasswordAuthenticationFilter"
+                class="com.roomreservation.web.security.CustomUsernamePasswordAuthenticationFilter">
+        <beans:property name="authenticationManager" ref="authenticationManager"/>
+        <beans:property name="authenticationSuccessHandler" ref="authSuccessHandler"/>
+        <beans:property name="authenticationFailureHandler" ref="authFailureHandler"/>
+        <beans:property name="filterProcessesUrl" value="/resources/login"/>
+        <beans:property name="usernameParameter" value="username"/>
+        <beans:property name="passwordParameter" value="password"/>
+    </beans:bean>
+
+</beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--<mvc:cors>-->
+
+        <!--<mvc:mapping path="/**"-->
+        <!--allowed-origins="http://localhost:8080"-->
+        <!--allowed-methods="GET, PUT, POST, DELETE"-->
+        <!--allowed-headers="Content-Type"-->
+        <!--exposed-headers=""-->
+        <!--allow-credentials="true"-->
+        <!--max-age="123" />-->
+
+        <!--<mvc:mapping path="/**"-->
+        <!--allowed-origins="http://localhost:3000"-->
+        <!--allowed-methods="GET, PUT, POST, DELETE"-->
+        <!--allowed-headers="Content-Type"-->
+        <!--exposed-headers=""-->
+        <!--allow-credentials="true"-->
+        <!--max-age="123" />-->
+
+        <!--&lt;!&ndash;<mvc:mapping path="/resources/**"&ndash;&gt;-->
+        <!--&lt;!&ndash;allowed-origins="http://localhost:3000" />&ndash;&gt;-->
+
+        <!--</mvc:cors>-->

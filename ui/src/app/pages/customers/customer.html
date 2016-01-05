@@ -1,0 +1,62 @@
+<div class="container">
+
+  <div class="main-window">
+    <h1> System zarzadzania pokojami </h1>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Opcje</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
+            <li> <a ui-sref="rooms">Pokoje</a></li>
+            <li  class="active"><a ui-sref="customers">Użytkownicy</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a ng-click='customers.logout()' ><span class="glyphicon glyphicon-log-out"></span>Wylogoj</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
+
+
+    <div class="customers-list-wrap-container">
+      <div class="customers-list-container">
+        <h2>Użytkownicy</h2>
+        <select size="15"
+                ng-model="customers.selectedCustomer"
+                ng-options="customer as (customer.name + ' '+ customer.surname) for customer in customers.customers">
+          <option>{{room}}</option>
+        </select>
+        <button class="btn btn-primary"  ng-click="customers.openAddCustomerModal()">Dodaj</button>
+        <button class="btn btn-danger btn-xs" ng-click="customers.deleteCustomer(customers.selectedCustomer.id)">Usun</button>
+      </div>
+    </div>
+
+    <div class="customers-description-container container">
+      <h2>Opis</h2>
+      <div class="form-group">
+        <label for="name">Imie:</label>
+        <label class="unBold" id="name">{{customers.selectedCustomer.name}}</label>
+      </div>
+      <div class="form-group">
+        <label for="surname">Nazwisko:</label>
+        <label class="unBold" id="surname">{{customers.selectedCustomer.surname}}</label>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+
+

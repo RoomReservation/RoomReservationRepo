@@ -1,0 +1,43 @@
+.customers-list-wrap-container {
+  width: 100%;
+  margin-top: 90px;
+}
+
+.customers-list-container {
+  float: left;
+  width: 400px;
+}
+
+pre.customers-list-pre-container {
+  width: 330px;
+  //float: left;
+  //margin-right: 100px;
+}
+
+.customers-list-container select{
+  width: 180px;
+  height: 200px;
+  float: left;
+}
+
+.customers-list-container button{
+  display: block;
+  margin-bottom: 10px;
+  width: 95px;
+}
+
+.customers-list-container h2{
+  margin-left: 80px;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.customers-description-container span{
+  display: block;
+  margin-bottom: 10px;
+
+}
+
+.unBold{
+  font-weight: normal;
+}

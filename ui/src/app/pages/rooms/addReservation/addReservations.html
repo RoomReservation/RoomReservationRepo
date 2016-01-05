@@ -1,0 +1,67 @@
+<form name="addReservation" novalidate>
+  <div class="modal-header">
+    <h3 class="modal-title">Dodaj rezerwacje</h3>
+  </div>
+  <div class="modal-body">
+
+    <!--<div class="form-group">-->
+      <!--<label for="name">Wprowadz osobę</label>-->
+      <!--<input ng-minlength="4" id="name" class="form-control" name="name" ng-model="add.room.name" required>-->
+
+      <!--<div ng-show="addRoom.$submitted || addRoom.name.$touched">-->
+        <!--<span class="error"-->
+              <!--ng-show="addRoom.name.$error.minlength || addRoom.name.$error.required">Za krotka nazwa</span>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div class='container-fluid typeahead-demo'>
+      <div class="form-group">
+        <label for="userName">Użytkownik</label>
+      <input type="text" name="userName" id="userName" ng-model="add.selectedUser" placeholder="Wprowadz użytkownika" uib-typeahead='customer as (customer.name + " " + customer.surname)  for customer in add.findUserByString($viewValue)' typeahead-loading="add.loadingLocations" typeahead-no-results="add.noResults" class="form-control" typeahead-editable="false" required>
+      <i ng-show="add.loadingLocations" class="glyphicon glyphicon-refresh"></i>
+      <div ng-show="add.noResults">
+        <i class="glyphicon glyphicon-remove"></i> No Results Found
+      </div>
+    </div>
+      </div>
+    <div ng-show="addReservation.$submitted || addReservation.userName.$touched">
+        <span class="error"
+              ng-show="!addReservation.userName.$valid">Uzupelnij pole</span>
+    </div>
+
+    <div class="form-group">
+      <label for="dateFrom">od</label>
+    <div class="row calendar-width">
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="date" id="dateFrom"class="form-control" ng-change="add.onChangeChartDateFrom()" uib-datepicker-popup="{{add.format}}" ng-model="add.reservation.dateFrom" is-open="add.status.openDateFrom" min-date="add.minDate" max-date="add.maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="add.openDateFrom($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+      </div>
+    </div>
+      </div>
+
+    <div class="form-group">
+      <label for="dateTo">do</label>
+    <div class="row calendar-width">
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="date" id="dateTo" class="form-control" ng-change="add.onChangeChartDateTo()" uib-datepicker-popup="{{add.format}}" ng-model="add.reservation.dateTo" is-open="add.status.openDateTo" min-date="add.dateFrom.addDays(1)" max-date="add.maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="add.openDateTo($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+      </div>
+    </div>
+      </div>
+
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="add.addReservation(addReservation)">Rezerwój</button>
+    <a class="btn btn-default" ng-click="add.close()">Zamknij</a>
+  </div>
+
+</form>
